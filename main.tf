@@ -13,7 +13,7 @@ provider "aws" {
 
 #Create EC2 instance
 resource "aws_instance" "tainttestvanevm" {
-  ami                    = "ami-0a4bb11459bb218d0"
+  ami                    = "ami-00c39f71452c08778"
   instance_type          = "t2.micro"
 
   user_data = <<EOF

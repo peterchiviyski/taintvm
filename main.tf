@@ -11,14 +11,19 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# Create a VPC
-resource "aws_vpc" "testtaint" {
-  cidr_block           = "10.0.0.0/16"
-  instance_tenancy     = "default"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
+#Create EC2 instance
+resource "aws_instance" "tainttestvanevm" {
+  ami                    = "ami-0a4bb11459bb218d0"
+  instance_type          = "t2.micro"
+
+  user_data = <<EOF
+#!/bin/bash
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo systemctl start nginx
+EOF
 
   tags = {
-    Name = "testtaint"
+    Name = "tainttest2"
   }
 }
